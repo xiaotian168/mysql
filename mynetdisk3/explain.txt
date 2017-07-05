@@ -1,0 +1,35 @@
+#mysql服务器写的网盘项目
+
+1.使用单列模式；封装MYSQL对象
+2.支持客户端向服务器对象上传、下载、查询数据
+
+
+
+
+环境：
+1.md5相关工具安装；使用了md5查看两个文件内容是否相同。
+    sudo apt-get install openssl libssl-dev
+    //需要安装上面两个包才能调用md5的相关函数获取md5的校验值
+
+
+
+
+mysql数据库有两张表
+1.用户信息表：
+    字段：用户id(主键)、用户名、登录网盘服务器密码
+          int、varchar、varchar
+
+2.用户文件表:
+    字段：id(主键)、用户id(外键)、文件名、网盘路径、上传时间、文件大小、实际存储路径、md5校验值
+    int、int、varchar、varchar、timestamp、int、varchar、varchar
+
+
+
+使用方法：
+    1.登录网盘
+        ./client.out 用户名 密码
+    2.上传文件
+        upload 本地文件路径 网盘文件路径
+    3.下载文件
+        download 网盘文件路径 本地保存路径
+
